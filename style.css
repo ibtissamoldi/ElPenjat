@@ -1,0 +1,31 @@
+:root {
+    /* Fons */
+    --fons: #0D0B0F;
+    --superficie: #18141C;
+    --superficie-clara: #241D2A;
+
+    /* Temàtica */
+    --porpra: #4B2A5A;
+    --violeta: #6B3F7A;
+    --bordeus: #7A1F2B;
+
+    /* Estats */
+    --encert: #5E8C61;
+    --error: #A83246;
+
+    /* Textos */
+    --text: #E8E0D0;
+    --text-secundari: #A8A1AA;
+
+    /* Detalls */
+    --or: #A28B6E;
+
+    /* Generals */
+    --vora: #332A3A;
+    --superposicio: rgba(0, 0, 0, 0.6);
+
+    /* Ombres */
+    --ombra-petita: 0 2px 8px rgba(0, 0, 0, 0.35);
+    --ombra-mitjana: 0 6px 20px rgba(0, 0, 0, 0.5);
+    --ombra-lluentor: 0 0 15px rgba(107, 63, 122, 0.35);
+}
