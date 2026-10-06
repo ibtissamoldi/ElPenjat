@@ -1,0 +1,100 @@
+Mi teclado pide vacaciones
+Hoy el café compila
+El WiFi vuelve a fallar
+A buen hambre, no hay pan duro
+Nunca confíes en un float
+El 404 también tiene sentimientos
+Mi código necesita unas vacaciones
+Más vale un commit que mil promesas
+El ratón ha decidido jubilarse hoy
+En casa del herrero, cuchillo de palo
+El backend funciona, el frontend llora
+He borrado el código equivocado otra vez
+CSS: haciendo que todo parezca sencillo
+Mi servidor duerme más que yo
+Donde hay un bug, hay una solución pendiente
+El cliente quiere cambios para ayer
+Primero funciona, luego ya veremos el código
+Hoy he aprendido que PHP también puede sufrir
+No hay mejor debugger que una buena taza de café
+El examen empieza en diez minutos y no sé nada
+A veces programar consiste en buscar una coma
+El header está bien, pero el footer ha escapado
+Mi código tiene más parches que una carretera vieja
+He abierto el proyecto y ya necesito otro café
+Si el código funciona a la primera, desconfía inmediatamente
+Pan comido, y a otra cosa.
+¡Qué sueño tengo hoy!
+Cada oveja con su pareja.
+De tal palo, tal astilla.
+Zapatero, a tus zapatos.
+A mal paso, darle prisa.
+Dime con quién andas.
+Mucho ruido y pocas nueces.
+Ojos que no ven, corazón que no siente.
+Más vale pájaro en mano que ciento volando.
+En casa de herrero, cuchillo de palo.
+A caballo regalado no se le mira el diente.
+Cría cuervos y te sacarán los ojos.
+No por mucho madrugar amanece más temprano.
+Lo prometido es deuda, aunque llegue con retraso.
+No dejes para mañana lo que puedas disfrutar hoy.
+Hoy puede ser un gran día, pero primero toca café.
+A buen hambre no hay pan duro, ni excusas que valgan.
+Más vale una sonrisa sincera que mil palabras bonitas.
+El que busca, encuentra; y si no, aprende algo nuevo.
+Quien tiene un amigo, tiene un tesoro... y un cómplice.
+Yo no procrastino: simplemente dejo que maduren las ideas.
+Si la vida te da limones, pide también un poco de hielo.
+En esta casa mandan las ganas, el café y el sentido común.
+Que la fuerza te acompañe, incluso cuando no sabes adónde vas.
+Las montañas parecen gigantes cuando las ves desde el valle.
+A quien madruga, Dios le ayuda.
+Mi perro cree que todos los paquetes son regalos para él.
+El museo cerrará sus puertas dentro de veinte minutos.
+Una buena paella necesita paciencia y bastante hambre.
+El astronauta dejó una huella junto a la bandera.
+Nadie esperaba encontrar un pingüino dentro del supermercado.
+La guitarra sonaba fatal, pero todos cantábamos igualmente.
+Los trenes nocturnos tienen algo extraño y fascinante.
+El verano pasado aprendí a hacer surf en Portugal.
+Un detective nunca debería perder sus propias pistas.
+La abuela escondió las llaves dentro del cajón de los calcetines.
+El volcán llevaba siglos dormido bajo aquella montaña.
+Hay canciones que recuerdan lugares que ya no existen.
+El cocinero olvidó la sal y tuvo que improvisar.
+Los búhos pueden girar la cabeza mucho más de lo que parece.
+La biblioteca estaba completamente vacía aquella tarde de domingo.
+Mi hermano colecciona monedas de países que nunca ha visitado.
+El barco desapareció detrás del faro al caer la noche.
+Una tormenta eléctrica iluminó todo el pueblo durante horas.
+Los dinosaurios desaparecieron mucho antes de que existieran los humanos.
+El árbitro sacó una tarjeta roja en el último minuto.
+A veces perderse es la mejor manera de descubrir un lugar nuevo.
+El robot aprendió a reconocer las voces de sus creadores.
+La entrada del castillo estaba escondida detrás de una cascada.
+Más vale tarde que nunca
+El array empieza en el índice cero
+Mi vecino toca la guitarra cada tarde
+Hay que depurar este componente de React
+Ojos que no ven, corazón que no siente
+La variable no está declarada en el scope
+Desayuno tostadas con tomate y aceite
+A caballo regalado no le mires el diente
+El endpoint devuelve un JSON mal formado
+El tren de las ocho siempre llega puntual
+No dejes para mañana lo que puedas hacer hoy
+Hay que conectar el frontend con el backend
+Los domingos me gusta dormir hasta tarde
+El evento click no se dispara en ese botón
+Perro ladrador, poco mordedor
+La caché del navegador guarda los archivos estáticos
+En verano hace demasiado calor en la ciudad
+Usa variables de entorno para las claves secretas
+El parque está lleno de niños jugando
+Cuando el río suena, agua lleva
+El componente se renderiza dos veces por error
+Mi hermana estudia medicina en la universidad
+Hay que hacer un merge sin conflictos en Git
+Las olas del mar suenan relajantes al atardecer
+No hay atajo sin trabajo
