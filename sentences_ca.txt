@@ -1,0 +1,100 @@
+El bug ha tornat
+Avui no compila res
+Més val tard que mai
+El CSS m'odia
+On és el meu cafè?
+Qui sembra, recull
+El div s'ha descontrolat
+PHP ha decidit no funcionar
+El servidor necessita vacances
+Avui toca lluitar amb el flexbox
+A cavall regalat no li miris el dentat
+He fet deploy i ara tinc por
+El client vol només un petit canvi
+El meu codi funciona per algun motiu
+Un margin més i abandono el projecte
+HTML sense CSS és com una casa buida
+El bug desapareix quan comparteixo pantalla
+Qui no arrisca, no programa
+He corregit un error i n'han aparegut cinc
+La consola té més secrets que el meu mòbil
+Si funciona en producció, millor no tocar res
+El localhost és l'únic lloc on tot funciona
+Avui he passat més temps buscant bugs que programant
+El professor diu que és fàcil, però el codi diu el contrari
+Quan acabes el projecte, descobreixes que faltava una funcionalitat
+Qui no corre, sempre vola.
+A poc a poc i bona lletra.
+Fa més el que vol que el que pot.
+Més val tard que mai.
+Avui fa un dia de gos.
+De mica en mica s'omple la pica.
+Fer-ne cinc cèntims.
+Estar com una cabra.
+Qui dia passa, any empeny sense parar.
+Val més prevenir que curar sempre que puguis.
+No diguis blat fins que sigui al sac.
+Quan plou, tots els gats es mullen.
+Qui té boca s'equivoca de tant en tant.
+Al mal temps, bona cara i endavant.
+Perdre el fil és fàcil, trobar-lo costa més.
+Avui no estic per romanços ni per històries.
+Qui juga amb foc, acaba cremant-se els dits.
+Qui molt abraça, poc estreny, encara que tingui bona intenció.
+De tant en tant, cal sortir de la zona de confort sense por.
+Quan una porta es tanca, una finestra s'obre per algun lloc.
+Qui té pressa, sovint acaba fent doble feina sense adonar-se'n.
+No deixis per demà el que puguis fer avui mateix, si pots.
+Quan el gat no hi és, els ratolins fan festa a la cuina.
+El que avui sembla impossible, demà pot ser una rutina ben fàcil.
+Si vols arribar lluny, més val anar acompanyat que sol pel camí.
+La lluna sembla més gran quan la mires des de la muntanya.
+Qui sembra vents recull tempestats.
+El gat ha robat el peix abans que arribessin els convidats.
+Demà agafarem el primer tren cap a Girona.
+No hi ha millor banda sonora que la pluja contra els vidres.
+La tortuga va guanyar la cursa sense córrer gaire.
+Avui toca fer truita de patates per sopar.
+Els pirates amagaven tresors on ningú gosava buscar-los.
+Un bon llibre pot convertir una tarda avorrida en una aventura.
+La bicicleta té una roda punxada des de dilluns.
+Quan el riu baixa fort, els pescadors es queden a casa.
+El castell estava envoltat d'una boira espessa i misteriosa.
+M'agrada caminar descalç per la sorra quan fa calor.
+El veí toca la trompeta cada diumenge al matí.
+Per arribar al cim encara ens falten dues hores.
+Les abelles treballen sense necessitat de cap reunió.
+Ahir vam trobar una fotografia dins d'una capsa antiga.
+El cambrer va portar quatre plats quan n'havíem demanat tres.
+Mai havia vist tantes estrelles en una mateixa nit.
+La iaia guarda les receptes escrites en una llibreta blava.
+Els dracs no existeixen, però serien mascotes espectaculars.
+Un submarí pot passar setmanes sense veure la llum del sol.
+La porta grinyola cada vegada que algú entra.
+Si vols arribar lluny, comença per fer el primer pas.
+El mag va perdre el barret just abans de començar l'espectacle.
+A qui matina, Déu l'ajuda
+El codi té un error a la línia deu
+El gat dorm al sofà tot el dia
+Cal validar el formulari abans d'enviar
+No hi ha mal que per bé no vingui
+La funció retorna un valor nul
+M'agrada el cafè calent al matí
+De mica en mica s'omple la pica
+El servidor respon amb error 404
+Anem a la platja aquest diumenge
+Qui no arrisca, no pisca
+Cal fer un fetch a l'API del temps
+Tinc molta gana i poc temps
+El CSS no s'aplica correctament al mòbil
+Pagant Sant Pere canta
+La base de dades guarda les dades dels usuaris
+Els ocells canten cada matí de primavera
+Has de fer un commit abans del push
+Vols un gelat de xocolata o de maduixa?
+El JavaScript s'executa al navegador del client
+A la taula del menjador hi ha un llibre vell
+No posis mai les contrasenyes al codi font
+La ciutat s'il·lumina quan cau la nit
+El DOM és com un arbre de nodes HTML
+Qui tot ho vol, tot ho perd
