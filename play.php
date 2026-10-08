@@ -58,7 +58,7 @@
         $cantidates = [];  // guardaremos las frases elegidas por el nivel
         foreach ($linies as $frase){
             if (classificar($frase) === $dificultat){
-                $cantidates = $frase;    // guardamos las frases elejidas por classificar
+                $cantidates[]= $frase;    // guardamos las frases elejidas por classificar
             }
         }
 
@@ -71,7 +71,7 @@
 
 
         // GUARDAMOS LA PARTIDA 
-        $_SESSION['frase'] = mb_strtoupper($cantidades[array_rand($cantidades)]);
+        $_SESSION['frase'] = mb_strtoupper($cantidates[array_rand($cantidates)]);
         $_SESSION['nom'] = $nom;
         $_SESSION['dificultat'] = $dificultat;
         $_SESSION['encertades'] = [];
@@ -135,7 +135,7 @@
 
 
     // ---------- 5. FIN DE PARTIDA ----------
-    if ($completa || $errors >= $MAX_ERRORS) {                                  // si esta completa o los errores mayores que los maximos osea 6
+    if ($completa || $errors >= $MAX_ERRORES) {                                  // si esta completa o los errores mayores que los maximos osea 6
         $_SESSION['resultat'] = $completa ? 'guanya' : 'perd';                  // nos muestra el resultado si ha ganado o no
         $_SESSION['temps']    = time() - $_SESSION['inici'];                    // el tiempo restamos la hora actual menos la hroa que empezo para calcular los segundos totales en los que jugo
         header('Location: gameover.php');                                       // lo enviamos a la pagina de gameover.php ´
@@ -184,7 +184,7 @@
 
             <div class="zona-principal">
                 <div class="zona-penjat">
-                    <img src="assets/images/penjat-0.png" alt="Dibuix del penjat" class="imatge-penjat" id="imatge-penjat">
+                    <img src="assets/images/penjat-<?php echo $errors; ?>.png" alt="Dibuix del penjat" class="imatge-penjat" id="imatge-penjat">
                 </div>
 
 
