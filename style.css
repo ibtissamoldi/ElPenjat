@@ -48,10 +48,14 @@ body {
 .superficie {
     background-color: var(--superficie);
     padding: 8px;
+    width: fit-content;
+    border-radius: 4px;
 }
 .superficie-clara {
     background-color: var(--superficie-clara);
     padding: 8px;
+    width: fit-content;
+    border-radius: 4px;
 }
 .text-secundari {
     color: var(--text-secundari);
@@ -76,14 +80,48 @@ body {
     position: relative;
     z-index: 1;
 }
+#titol {
+    text-align: center;
+}
 #descripcio {
-    width: 480px;
+    width: 580px;
     text-align: justify;
+    font-size: 1.2rem;
 }
 #icona {
-    width: 200px;
-    height: 200px;
+    width: 64px;
+    height: 64px;
 }
+#index > div { margin: 16px auto; }
+#div-titol {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 290px;
+}
+#a-ranking {
+    color: var(--or)
+}
+#form-jugar {
+    width: 800px;
+    height: 64px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#form-jugar input, #form-jugar select {
+    font-size: 1.5rem;
+    background-color: grey;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#error-nom {
+    color: red;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+input.invalid { border: 4px solid red; }
 
 
 /* Estil play.php */
