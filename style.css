@@ -1,3 +1,4 @@
+/* Paleta de colors */
 :root {
     /* Fons */
     --fons: #0D0B0F;
@@ -29,3 +30,75 @@
     --ombra-mitjana: 0 6px 20px rgba(0, 0, 0, 0.5);
     --ombra-lluentor: 0 0 15px rgba(107, 63, 122, 0.35);
 }
+
+/* Estil global */
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+body {
+    background-color: var(--fons);
+    color: var(--text);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 8px;
+}
+.superficie {
+    background-color: var(--superficie);
+    padding: 8px;
+}
+.superficie-clara {
+    background-color: var(--superficie-clara);
+    padding: 8px;
+}
+.text-secundari {
+    color: var(--text-secundari);
+}
+
+/* Estil index.php */
+#index {
+    position: relative;
+    background: url("./assets/images/gloomy_manor.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#index::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 0;
+}
+#index > * {
+    position: relative;
+    z-index: 1;
+}
+#descripcio {
+    width: 480px;
+    text-align: justify;
+}
+#icona {
+    width: 200px;
+    height: 200px;
+}
+
+
+/* Estil play.php */
+
+
+
+/* Estil gameover.php */
+
+
+
+/* Estil ranking.php */
+
+
+
+/* Estil error403.php */
+
+
+
+/* Estil error404.php */
+
+
