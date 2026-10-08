@@ -104,10 +104,10 @@
 
 
         if ($valida && !$jaUsada){
-            if (mb_strpos($_SESSION['frase'], $lletra) !== false){
-                $_SESSION['encertades'][] = $lletra;
+            if (mb_strpos($_SESSION['frase'], $lletra) !== false){  //if la letra existe me devolvera el indice entonces si me devuelve un numero 
+                $_SESSION['encertades'][] = $lletra;        // es un indice 
             }else{
-                $_SESSION['fallades'][] = $lletra;
+                $_SESSION['fallades'][] = $lletra;   // de lo contrario no existe y me da un false 
             }
         }
 
@@ -117,17 +117,17 @@
 
     // CALCULAMOS EL ESTADO DE LA PARTIDA 
 
-    $errors = count($_SESSION['fallades']);
-    $oculta = '';
-    $completa = true;
-    foreach (mb_str_split($_SESSION['frase']) as $c) {
-        if ($c === ' ') {
-            $oculta .= '&nbsp;&nbsp;';
-        } elseif (in_array($c, $_SESSION['encertades'])) {
-            $oculta .= $c . ' ';
+    $errors = count($_SESSION['fallades']);     // contamos los errores las letras incorrectas del jugador 
+    $oculta = '';                                 //     lo qeu hacemos aqui es esconder o el guion _ o la letra correcta del jugador     
+    $completa = true;                                   // para verificar si esta econtrada o no 
+    foreach (mb_str_split($_SESSION['frase']) as $c) {          // por cada letra de la frase se llamara $c
+        if ($c === ' ') {                                       //si es vacio 
+            $oculta .= '&nbsp;&nbsp;';                          //añade dos espacios invisible ne html para separar las palabas visualmente
+        } elseif (in_array($c, $_SESSION['encertades'])) {         // busca si la letra esta en acertades si esta  
+            $oculta .= $c . ' ';                                    //la muestra seguida de un espacio
         } else {
-            $oculta .= '_ ';
-            $completa = false;
+            $oculta .= '_ ';                                        // sino la ha encontrado devuelve un guio bajo paraa esconder la palabra 
+            $completa = false;                          // y claramete no la encuentra 
         }
     }
 
@@ -135,10 +135,10 @@
 
 
     // ---------- 5. FIN DE PARTIDA ----------
-    if ($completa || $errors >= $MAX_ERRORS) {
-        $_SESSION['resultat'] = $completa ? 'guanya' : 'perd';
-        $_SESSION['temps']    = time() - $_SESSION['inici'];
-        header('Location: gameover.php');
+    if ($completa || $errors >= $MAX_ERRORS) {                                  // si esta completa o los errores mayores que los maximos osea 6
+        $_SESSION['resultat'] = $completa ? 'guanya' : 'perd';                  // nos muestra el resultado si ha ganado o no
+        $_SESSION['temps']    = time() - $_SESSION['inici'];                    // el tiempo restamos la hora actual menos la hroa que empezo para calcular los segundos totales en los que jugo
+        header('Location: gameover.php');                                       // lo enviamos a la pagina de gameover.php ´
         exit;
     }
 ?>
