@@ -29,3 +29,109 @@
     --ombra-mitjana: 0 6px 20px rgba(0, 0, 0, 0.5);
     --ombra-lluentor: 0 0 15px rgba(107, 63, 122, 0.35);
 }
+
+
+.pagina-joc {
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--fons);
+    background-image:linear-gradient(rgba(13, 11, 15, 0.90),rgba(13, 11, 15, 0.96)),url("assets/images/mansion-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text);
+}
+
+
+.capcalera {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 20px 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid var(--vora);
+
+    background-color: rgba(13, 11, 15, 0.85);
+    box-shadow: var(--ombra-petita);
+}
+
+
+.info-jugador {
+    display: flex;
+    flex-direction: column;
+
+    text-align: right;
+}
+
+.etiqueta {
+    color: var(--text-secundari);
+
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+}
+
+.info-jugador strong {
+    margin-top: 3px;
+
+    color: var(--text);
+
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+}
+
+
+.contenidor-joc {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding: 45px 20px;
+
+    box-sizing: border-box;
+}
+
+
+
+.zona-teclat {
+    position: relative;
+
+    text-align: center;
+
+    padding-top: 30px;
+
+    border-top: 1px solid var(--vora);
+}
+
+
+.tecla {
+    width: 48px;
+    height: 48px;
+
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--superficie);
+
+    color: var(--text);
+
+    border: 1px solid var(--vora);
+    border-radius: 5px;
+
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
