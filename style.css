@@ -1,3 +1,4 @@
+/* Paleta de colors */
 :root {
     /* Fons */
     --fons: #0D0B0F;
@@ -30,20 +31,80 @@
     --ombra-lluentor: 0 0 15px rgba(107, 63, 122, 0.35);
 }
 
+/* Estil global */
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+body {
+    background-color: var(--fons);
+    color: var(--text);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 8px;
+}
+.superficie {
+    background-color: var(--superficie);
+    padding: 8px;
+}
+.superficie-clara {
+    background-color: var(--superficie-clara);
+    padding: 8px;
+}
+.text-secundari {
+    color: var(--text-secundari);
+}
 
+/* Estil index.php */
+#index {
+    position: relative;
+    background: url("./assets/images/gloomy_manor.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#index::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 0;
+}
+#index > * {
+    position: relative;
+    z-index: 1;
+}
+#descripcio {
+    width: 480px;
+    text-align: justify;
+}
+#icona {
+    width: 200px;
+    height: 200px;
+}
+
+
+/* Estil play.php */
 .pagina-joc {
     min-height: 100vh;
     margin: 0;
+
     background-color: var(--fons);
-    background-image:linear-gradient(rgba(13, 11, 15, 0.90),rgba(13, 11, 15, 0.96)),url("assets/images/mansion-bg.jpg");
+
+    background: url("./assets/images/bg_play.png") no-repeat;
+
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+
     color: var(--text);
 }
 
 
-.capcalera {
+/* -----------------------------------------
+   Capçalera
+----------------------------------------- */
+
+.pagina-joc .capcalera {
     width: 100%;
     box-sizing: border-box;
 
@@ -55,46 +116,311 @@
 
     border-bottom: 1px solid var(--vora);
 
-    background-color: rgba(13, 11, 15, 0.85);
+    background-color: rgba(13, 11, 15, 0.88);
+
     box-shadow: var(--ombra-petita);
 }
 
 
-.info-jugador {
+/* Logo */
+
+.pagina-joc .logo {
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+
+    letter-spacing: 0.18em;
+
+    transition: color 0.2s ease;
+}
+
+.pagina-joc .logo:hover {
+    color: var(--or);
+}
+
+
+/* -----------------------------------------
+   Informació del jugador
+----------------------------------------- */
+
+.pagina-joc .info-jugador {
     display: flex;
     flex-direction: column;
 
     text-align: right;
 }
 
-.etiqueta {
+.pagina-joc .etiqueta {
     color: var(--text-secundari);
 
     font-size: 0.7rem;
+
     letter-spacing: 0.15em;
 }
 
-.info-jugador strong {
+.pagina-joc .info-jugador strong {
     margin-top: 3px;
 
     color: var(--text);
 
     font-size: 0.95rem;
+
     letter-spacing: 0.08em;
 }
 
 
-.contenidor-joc {
+/* -----------------------------------------
+   Contenidor principal
+----------------------------------------- */
+
+.pagina-joc .contenidor-joc {
     width: 100%;
     max-width: 1100px;
 
     margin: 0 auto;
+
     padding: 45px 20px;
 
     box-sizing: border-box;
 }
 
 
+/* -----------------------------------------
+   Panell del joc
+----------------------------------------- */
+
+.panell-joc {
+    background-color: rgba(24, 20, 28, 0.88);
+
+    border: 1px solid var(--vora);
+
+    box-shadow: var(--ombra-mitjana);
+
+    padding: 35px;
+
+    border-radius: 8px;
+}
+
+
+/* -----------------------------------------
+   Capçalera del joc
+----------------------------------------- */
+
+.capcalera-joc {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.subtitol {
+    margin: 0 0 8px 0;
+
+    color: var(--or);
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.25em;
+}
+
+.capcalera-joc h1 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 2rem;
+
+    letter-spacing: 0.08em;
+
+    text-shadow: var(--ombra-lluentor);
+}
+
+.dificultat {
+    margin-top: 12px;
+
+    color: var(--text-secundari);
+
+    font-size: 0.85rem;
+}
+
+.dificultat strong {
+    color: var(--or);
+}
+
+
+/* -----------------------------------------
+   Zona principal
+----------------------------------------- */
+
+.zona-principal {
+    display: grid;
+
+    grid-template-columns: 1fr 1.3fr;
+
+    gap: 40px;
+
+    align-items: center;
+
+    margin-bottom: 35px;
+}
+
+
+/* -----------------------------------------
+   Zona del penjat
+----------------------------------------- */
+
+.zona-penjat {
+    text-align: center;
+}
+
+.marc-penjat {
+    min-height: 330px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background-color: rgba(13, 11, 15, 0.55);
+
+    border: 1px solid var(--vora);
+
+    border-radius: 6px;
+}
+
+.imatge-penjat {
+    width: 100%;
+
+    max-width: 280px;
+
+    max-height: 300px;
+
+    object-fit: contain;
+
+    display: block;
+
+    filter:
+        drop-shadow(0 0 10px rgba(107, 63, 122, 0.25));
+}
+
+
+.comptador-errors {
+    margin-top: 15px;
+
+    color: var(--text-secundari);
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.12em;
+}
+
+.comptador-errors span {
+    color: var(--error);
+
+    font-weight: bold;
+}
+
+
+/* -----------------------------------------
+   Zona de la frase
+----------------------------------------- */
+
+.zona-frase {
+    text-align: center;
+
+    padding: 30px 20px;
+}
+
+.indicacio-frase {
+    margin-bottom: 30px;
+
+    color: var(--text-secundari);
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.2em;
+}
+
+.frase-oculta {
+    min-height: 70px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    color: var(--text);
+
+    font-size: 1.5rem;
+
+    font-weight: bold;
+
+    letter-spacing: 0.15em;
+
+    line-height: 2;
+}
+
+
+/* Chaque lettre de la phrase */
+
+.espai-lletra {
+    min-width: 25px;
+
+    display: inline-block;
+
+    padding-bottom: 5px;
+
+    border-bottom: 2px solid var(--violeta);
+}
+
+
+/* Espai entre paraules */
+
+.espai-paraula {
+    width: 20px;
+}
+
+
+/* -----------------------------------------
+   Missatges de victòria / derrota
+----------------------------------------- */
+
+.missatge {
+    min-height: 30px;
+
+    margin-top: 20px;
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    letter-spacing: 0.08em;
+}
+
+.missatge.victoria {
+    color: var(--encert);
+
+    text-shadow: 0 0 10px rgba(94, 140, 97, 0.4);
+}
+
+.missatge.derrota {
+    color: var(--error);
+
+    text-shadow: 0 0 10px rgba(168, 50, 70, 0.4);
+}
+
+
+/* -----------------------------------------
+   Teclat
+----------------------------------------- */
 
 .zona-teclat {
     position: relative;
@@ -106,6 +432,35 @@
     border-top: 1px solid var(--vora);
 }
 
+.indicacio-teclat {
+    margin-bottom: 20px;
+
+    color: var(--text-secundari);
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.2em;
+}
+
+
+.teclat {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+
+/* -----------------------------------------
+   Tecles
+----------------------------------------- */
 
 .tecla {
     width: 48px;
@@ -114,6 +469,7 @@
     padding: 0;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -122,9 +478,13 @@
     color: var(--text);
 
     border: 1px solid var(--vora);
+
     border-radius: 5px;
 
+    font-family: inherit;
+
     font-size: 0.9rem;
+
     font-weight: bold;
 
     cursor: pointer;
@@ -135,3 +495,143 @@
         transform 0.15s ease,
         box-shadow 0.2s ease;
 }
+
+.tecla:hover {
+    background-color: var(--porpra);
+
+    border-color: var(--violeta);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--ombra-lluentor);
+}
+
+.tecla:active {
+    transform: translateY(0);
+}
+
+
+/* Lletra correcta */
+
+.tecla.correcta {
+    background-color: var(--encert);
+
+    border-color: var(--encert);
+
+    color: white;
+
+    cursor: default;
+}
+
+
+/* Lletra incorrecta */
+
+.tecla.incorrecta {
+    background-color: var(--error);
+
+    border-color: var(--error);
+
+    color: white;
+
+    cursor: default;
+}
+
+
+/* Tecla ja utilitzada */
+
+.tecla:disabled {
+    cursor: default;
+
+    opacity: 0.75;
+}
+
+
+/* -----------------------------------------
+   Botó nova partida
+----------------------------------------- */
+
+.zona-final {
+    margin-top: 30px;
+
+    text-align: center;
+}
+
+.boto-nova-partida {
+    padding: 12px 25px;
+
+    background-color: var(--superficie);
+
+    color: var(--text);
+
+    border: 1px solid var(--or);
+
+    border-radius: 5px;
+
+    font-family: inherit;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.12em;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.boto-nova-partida:hover {
+    background-color: var(--porpra);
+
+    box-shadow: var(--ombra-lluentor);
+}
+
+
+/* -----------------------------------------
+   Responsive
+----------------------------------------- */
+
+@media (max-width: 750px) {
+
+    .panell-joc {
+        padding: 20px;
+    }
+
+    .zona-principal {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .capcalera-joc h1 {
+        font-size: 1.5rem;
+    }
+
+    .frase-oculta {
+        font-size: 1.1rem;
+    }
+
+    .tecla {
+        width: 42px;
+        height: 42px;
+    }
+
+}
+
+
+/* Estil gameover.php */
+
+
+
+/* Estil ranking.php */
+
+
+
+/* Estil error403.php */
+
+
+
+/* Estil error404.php */
+
+
