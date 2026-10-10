@@ -7,6 +7,21 @@
 
     // ------------------ FUNCIONES ------------------
 
+    // Normalitzacion: quita los acentos (É -->E, Ç --> C...)
+    function normalitzar($text){
+        $amb  = ['À','Á','È','É','Ì','Í','Ï','Ò','Ó','Ù','Ú','Ü','Ç','Ñ',
+                'à','á','è','é','ì','í','ï','ò','ó','ù','ú','ü','ç','ñ'];
+        $sense = ['A','A','E','E','I','I','I','O','O','U','U','U','C','N',
+                'a','a','e','e','i','i','i','o','o','u','u','u','c','n'];
+
+        return str_replace($amb, $sense, $text);
+    }
+
+    function esLletra($c){
+        return preg_match('/^\p{L}$/u', $c) === 1;
+    }
+
+
     // funcion para medir la frase  
     function medir($frase){
         $net = preg_replace('/[^A-ZÀ-Ü]/u', '', mb_strtoupper($frase)); // dejamos solo las letras en mayusculas sin espacios ni nada 
@@ -29,7 +44,7 @@
         
         
         if (!$llarga && $moltesRepetides) {return 'facil';}
-        if ($llarga && !$moltesRepetides) {return 'dificl';}
+        if ($llarga && !$moltesRepetides) {return 'dificil';}
         return 'normal';
     }
 
@@ -49,7 +64,7 @@
 
         // Nombre si viene vacio le ponemos uno por defecto "anónim"
         $nom = trim($_POST['nom']);
-        if ($nom === ""){$nombre = 'Anónim';}
+        if ($nom === ""){$nom = 'Anónim';}
 
 
         // leer las frases y quedarnos con el que el jugador a elegido
@@ -104,7 +119,7 @@
 
 
         if ($valida && !$jaUsada){
-            if (mb_strpos($_SESSION['frase'], $lletra) !== false){  //if la letra existe me devolvera el indice entonces si me devuelve un numero 
+            if (mb_strpos(normalitzar($_SESSION['frase']), $lletra) !== false){  //if la letra existe me devolvera el indice entonces si me devuelve un numero 
                 $_SESSION['encertades'][] = $lletra;        // es un indice 
             }else{
                 $_SESSION['fallades'][] = $lletra;   // de lo contrario no existe y me da un false 
@@ -123,7 +138,9 @@
     foreach (mb_str_split($_SESSION['frase']) as $c) {          // por cada letra de la frase se llamara $c
         if ($c === ' ') {                                       //si es vacio 
             $oculta .= '&nbsp;&nbsp;';                          //añade dos espacios invisible ne html para separar las palabas visualmente
-        } elseif (in_array($c, $_SESSION['encertades'])) {         // busca si la letra esta en acertades si esta  
+        } elseif (!esLletra($c)) {                                   // coma, apóstrofe, guion, "·", "?"... se muestran siempre
+            $oculta .= $c . ' ';
+        } elseif (in_array(normalitzar($c), $_SESSION['encertades'])) {         // busca si la letra esta en acertades si esta  
             $oculta .= $c . ' ';                                    //la muestra seguida de un espacio
         } else {
             $oculta .= '_ ';                                        // sino la ha encontrado devuelve un guio bajo paraa esconder la palabra 
@@ -157,7 +174,7 @@
 
 
 <body class="pagina-joc">
-
+    <!-- DEBUG: <?php echo htmlspecialchars($_SESSION['frase']); ?> -->
 
     <noscript>
         <!-- navegador sin js -->
@@ -194,38 +211,25 @@
                 </div>
             </div>
 
-
-
             <div class="zona-teclat">
 
                 <p>TRIA UNA LLETRA</p>
-                <div class="teclat" id="teclat" >
-                    <button class="tecla" type="button">A</button>
-                    <button class="tecla" type="button">B</button>
-                    <button class="tecla" type="button">C</button>
-                    <button class="tecla" type="button">D</button>
-                    <button class="tecla" type="button">E</button>
-                    <button class="tecla" type="button">F</button>
-                    <button class="tecla" type="button">G</button>
-                    <button class="tecla" type="button">H</button>
-                    <button class="tecla" type="button">I</button>
-                    <button class="tecla" type="button">J</button>
-                    <button class="tecla" type="button">K</button>
-                    <button class="tecla" type="button">L</button>
-                    <button class="tecla" type="button">M</button>
-                    <button class="tecla" type="button">N</button>
-                    <button class="tecla" type="button">O</button>
-                    <button class="tecla" type="button">P</button>
-                    <button class="tecla" type="button">Q</button>
-                    <button class="tecla" type="button">R</button>
-                    <button class="tecla" type="button">S</button>
-                    <button class="tecla" type="button">T</button>
-                    <button class="tecla" type="button">U</button>
-                    <button class="tecla" type="button">V</button>
-                    <button class="tecla" type="button">W</button>
-                    <button class="tecla" type="button">X</button>
-                    <button class="tecla" type="button">Y</button>
-                    <button class="tecla" type="button">Z</button>
+                <div class="teclat" id="teclat">
+                    <?php
+                        for ($i = 65; $i <= 90; $i++) {
+                            $l = chr($i);
+
+                            if (in_array($l, $_SESSION['encertades'])) {
+                                $classe = ' correcta';
+                            } elseif (in_array($l, $_SESSION['fallades'])) {
+                                $classe = ' incorrecta';
+                            } else {
+                                $classe = '';
+                            }
+                    ?>
+                        <button class="tecla<?php echo $classe; ?>" type="button" data-lletra="<?php echo $l; ?>"<?php echo $classe !== '' ? ' disabled' : ''; ?>><?php echo $l; ?>
+                    </button>
+                    <?php } ?>
                 </div>
 
             </div>
