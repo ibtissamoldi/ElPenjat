@@ -73,27 +73,46 @@
         return null;
     }
 
-    
+
+
+        // puntuacion de dificultad = numero de letras distintas de la frase
+    function puntuacioDificultat($frase){
+        $m = medir($frase);
+        if ($m === null) return null;
+        [$total, $ratio] = $m;
+        return round($total * $ratio);
+    }
+
+    // calcula los 2 puntos de corte una sola vez (cache) con todo el archivo
+    function llindars(){
+        static $cache = null;
+        if ($cache !== null) return $cache;
+
+        $linies = file('sentences_ca.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $scores = [];
+        foreach ($linies as $f) {
+            $s = puntuacioDificultat($f);
+            if ($s !== null) $scores[] = $s;
+        }
+        sort($scores);
+        $n = count($scores);
+        $cache = [$scores[intdiv($n, 3)], $scores[intdiv(2 * $n, 3)]];
+        return $cache;
+    }
 
     // funcion para definir el nivel 
     function classificar($frase){
-        $MIN_LARGA = 28; // puede ser mas larga (rango 20-35)
-        $MAX_REPETIDA = 0.55; // ajustar con el script de abajo
+        $s = puntuacioDificultat($frase);
+        if ($s === null) return null;
 
-        if(!(medir($frase) === null)){
-            [$caracters, $ratio] = medir($frase); // desempacamos lo que nos devuelve la funcion en un array 
-
-            $llarga = $caracters >= $MIN_LARGA; // si es true es dificil(frase larga)
-            $moltesRepetides = $ratio <= $MAX_REPETIDA; // si es true es facil(varias letras repetidas)
-            
-            if (!$llarga && $moltesRepetides) {return 'facil';}
-            if ($llarga && !$moltesRepetides) {return 'dificil';}
-            return 'normal'; 
-        }
+        [$t1, $t2] = llindars();
+        if ($s < $t1)  return 'facil';
+        if ($s < $t2)  return 'normal';
+        return 'dificil';
     }
 
 
-
+    ///test
     $linies = file('sentences_ca.txt',FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
     $comptador = ['facil' => 0,'normal' => 0,'dificil' => 0];
@@ -105,7 +124,7 @@
             $comptador[$categoria]++;
         }
     }
-
+    //test
 
 
     //  -------------------------------- INICIO DE PARTIDA  --------------------------------
@@ -148,6 +167,7 @@
         $_SESSION['dificultat'] = $dificultat;
         $_SESSION['encertades'] = [];
         $_SESSION['fallades'] = [];
+        unset($_SESSION['resultat']);
         $_SESSION['inici'] = time();
 
         header('Location: play.php');  // evita reenviar el formulario al refrescar
@@ -213,8 +233,13 @@
         $_SESSION['resultat'] = $completa ? 'guanya' : 'perd';                  // nos muestra el resultado si ha ganado o no
         $_SESSION['temps']    = time() - $_SESSION['inici'];                    // el tiempo restamos la hora actual menos la hroa que empezo para calcular los segundos totales en los que jugo
         $_SESSION['puntuacio'] = calcularPuntuacio($_SESSION['frase'], $errors, $_SESSION['temps'], $completa);
-        header('Location: gameover.php');                                       // lo enviamos a la pagina de gameover.php ´
-        exit;
+
+        // lo enviamos a la pagina de gameover.php ´
+
+        if (!isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+            header('Location: gameover.php');
+            exit;                        
+        }   
     }
 ?>
 
@@ -231,7 +256,8 @@
 </head>
 
 
-<body class="pagina-joc">
+<body class="pagina-joc" data-resultat="<?php echo isset($_SESSION['resultat']) ? htmlspecialchars($_SESSION['resultat']) : ''; ?>">
+
     <!-- test: <?php echo $_SESSION['frase']; ?> -->
      <!-- TEST DE CLASSIFICACIÓ
         Facils: <?php echo $comptador['facil']; ?>
