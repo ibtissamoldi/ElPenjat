@@ -9,45 +9,102 @@
 
     // Normalitzacion: quita los acentos (É -->E, Ç --> C...)
     function normalitzar($text){
-        $amb  = ['À','Á','È','É','Ì','Í','Ï','Ò','Ó','Ù','Ú','Ü','Ç','Ñ',
-                'à','á','è','é','ì','í','ï','ò','ó','ù','ú','ü','ç','ñ'];
-        $sense = ['A','A','E','E','I','I','I','O','O','U','U','U','C','N',
-                'a','a','e','e','i','i','i','o','o','u','u','u','c','n'];
-
-        return str_replace($amb, $sense, $text);
+        $amb  = ['À','Á','È','É','Ì','Í','Ï','Ò','Ó','Ù','Ú','Ü','Ç','Ñ','à','á','è','é','ì','í','ï','ò','ó','ù','ú','ü','ç','ñ'];
+        $sense = ['A','A','E','E','I','I','I','O','O','U','U','U','C','N','a','a','e','e','i','i','i','o','o','u','u','u','c','n'];   
+        $lletraSense = str_replace($amb, $sense, $text);
+        return $lletraSense;
     }
 
     function esLletra($c){
-        return preg_match('/^\p{L}$/u', $c) === 1;
+        return preg_match('/^\p{L}$/u', $c) == true;
+    }
+
+    // ------------------ FUNCIONES para hacer la punctuation ------------------
+    function contarLletres($frase){
+        $comptador = 0;
+        foreach (mb_str_split($frase) as $ll) {
+            if (esLletra($ll)) {
+                $comptador++;
+            }
+        }
+        return $comptador;
+    }
+
+    function calcularPuntuacio($frase, $errors, $temps, $guanya){
+        if (!$guanya) {         //partida perdida= 0 puntos
+            return 0; 
+        }                     
+
+        $lletres =contarLletres($frase);
+        $puntosBase= $lletres *10;                  //frase mas larga=mas puntos
+        $penalErrors = $errors * 20;                   //cada error resta 20
+        $tempsMax=$lletres * 4;                   //4 sec por letra
+
+        //'max'handles negative numbers  shorter version(returns largest number between the 2 values)
+        $bonusTemps = max(0, $tempsMax -$temps);   //bonus puntos por rapidez
+        return max(0, $puntosBase - $penalErrors + $bonusTemps);
+            
+        /*
+        if($temps > $tempsMax){
+            $bonusTemps = 0;
+        }else{
+            $bonusTemps = $tempsMax -$temps;
+        }
+        
+        $puntosFinal = ($puntosBase - $penalErrors) + $bonusTemps;
+
+        if ($puntosFinal < 0) {
+            return 0;
+        } else {
+            return $puntosFinal;
+        }*/
+        
     }
 
 
     // funcion para medir la frase  
     function medir($frase){
         $net = preg_replace('/[^A-ZÀ-Ü]/u', '', mb_strtoupper($frase)); // dejamos solo las letras en mayusculas sin espacios ni nada 
-        $ratio = count(array_unique(mb_str_split($net))) / mb_strlen($net);
-        return [mb_strlen($frase), $ratio]; // devuelve [caracteres totales, ratio de las letras distintas]
+        $totalLletres =mb_strlen($net);
+        if($totalLletres > 0){
+            $ratio = count(array_unique(mb_str_split($net))) / $totalLletres;
+            return [$totalLletres, $ratio]; // devuelve [caracteres totales, ratio de las letras distintas]
+        }
+        return null;
     }
 
+    
+
     // funcion para definir el nivel 
-        
     function classificar($frase){
         $MIN_LARGA = 28; // puede ser mas larga (rango 20-35)
         $MAX_REPETIDA = 0.55; // ajustar con el script de abajo
 
+        if(!(medir($frase) === null)){
+            [$caracters, $ratio] = medir($frase); // desempacamos lo que nos devuelve la funcion en un array 
 
-
-        [$caracters, $ratio] = medir($frase); // desempacamos lo que nos devuelve la funcion en un array 
-
-        $llarga = $caracters >= $MIN_LARGA; // si es true es dificil
-        $moltesRepetides = $ratio <= $MAX_REPETIDA; // si es tru es facil
-        
-        
-        if (!$llarga && $moltesRepetides) {return 'facil';}
-        if ($llarga && !$moltesRepetides) {return 'dificil';}
-        return 'normal';
+            $llarga = $caracters >= $MIN_LARGA; // si es true es dificil(frase larga)
+            $moltesRepetides = $ratio <= $MAX_REPETIDA; // si es true es facil(varias letras repetidas)
+            
+            if (!$llarga && $moltesRepetides) {return 'facil';}
+            if ($llarga && !$moltesRepetides) {return 'dificil';}
+            return 'normal'; 
+        }
     }
 
+
+
+    $linies = file('sentences_ca.txt',FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+    $comptador = ['facil' => 0,'normal' => 0,'dificil' => 0];
+
+    foreach ($linies as $frase) {
+        $categoria = classificar($frase);
+
+        if ($categoria !== null) {
+            $comptador[$categoria]++;
+        }
+    }
 
 
 
@@ -155,6 +212,7 @@
     if ($completa || $errors >= $MAX_ERRORES) {                                  // si esta completa o los errores mayores que los maximos osea 6
         $_SESSION['resultat'] = $completa ? 'guanya' : 'perd';                  // nos muestra el resultado si ha ganado o no
         $_SESSION['temps']    = time() - $_SESSION['inici'];                    // el tiempo restamos la hora actual menos la hroa que empezo para calcular los segundos totales en los que jugo
+        $_SESSION['puntuacio'] = calcularPuntuacio($_SESSION['frase'], $errors, $_SESSION['temps'], $completa);
         header('Location: gameover.php');                                       // lo enviamos a la pagina de gameover.php ´
         exit;
     }
@@ -174,11 +232,20 @@
 
 
 <body class="pagina-joc">
-    <!-- DEBUG: <?php echo htmlspecialchars($_SESSION['frase']); ?> -->
+    <!-- test: <?php echo $_SESSION['frase']; ?> -->
+     <!-- TEST DE CLASSIFICACIÓ
+        Facils: <?php echo $comptador['facil']; ?>
+        Normals: <?php echo $comptador['normal']; ?>
+        Dificils: <?php echo $comptador['dificil']; ?>
+        -->
 
     <noscript>
-        <!-- navegador sin js -->
-
+        <div class="noscript-capa">
+            <div class="noscript-missatge">
+                ⚠ Aquest joc necessita JavaScript.<br>
+                Activa'l al navegador i recarrega la pàgina per poder jugar.
+            </div>
+        </div>
     </noscript>
 
 
@@ -238,10 +305,6 @@
         </section>
 
     </main>
-
-
-
-
 
     <script src="scripts/play.js"></script>
 

@@ -52,7 +52,6 @@ body {
     border-radius: 4px;
 }
 .superficie-clara {
-    background-color: var(--superficie-clara);
     padding: 8px;
     width: fit-content;
     border-radius: 4px;
@@ -89,8 +88,8 @@ body {
     font-size: 1.2rem;
 }
 #icona {
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
 }
 #index > div { margin: 16px auto; }
 #div-titol {
@@ -354,5 +353,33 @@ header {
 }
 
 
+.noscript-capa {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--superposicio);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
 
+
+.noscript-missatge {
+    max-width: 480px;
+    padding: 28px 32px;
+    background-color: var(--superficie-clara);
+    color: var(--text);
+    border: 2px solid var(--bordeus);
+    border-radius: 8px;
+    box-shadow: var(--ombra-mitjana);
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#index > noscript { 
+    z-index: 1000; 
+}
 /*RESPONSIVE */

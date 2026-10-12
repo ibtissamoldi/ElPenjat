@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,20 @@
     <script src="./scripts/index.js" defer></script>
 </head>
 <body id="index">
+
+    <noscript>
+        <div class="noscript-capa">
+            <div class="noscript-missatge">
+                ⚠ Aquest joc necessita JavaScript.<br>
+                Activa'l al navegador i recarrega la pàgina per poder jugar.
+            </div>
+        </div>
+    </noscript>
+
+
     <div class="superficie-clara" id="div-titol">
         <h1 id="titol">El Penjat</h1>
-        <img id="icona" src="./assets/images/hangman_icon.png" alt="Icona del penjat" >
+        <img id="icona" src="./assets/images/penjat-6.png" alt="Icona del penjat" >
     </div>
     <div class="superficie-clara" id="descripcio">
         Estaves explorant una mansió encantada. De sobte, va aparèixer la bruixa, la mestressa de la mansió.
