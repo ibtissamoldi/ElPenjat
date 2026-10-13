@@ -168,6 +168,8 @@
         $_SESSION['encertades'] = [];
         $_SESSION['fallades'] = [];
         unset($_SESSION['resultat']);
+        unset($_SESSION['registrat']);
+        unset($_SESSION['ultim_record']); 
         $_SESSION['inici'] = time();
 
         header('Location: play.php');  // evita reenviar el formulario al refrescar
@@ -212,17 +214,24 @@
     $errors = count($_SESSION['fallades']);     // contamos los errores las letras incorrectas del jugador 
     $oculta = '';                                 //     lo qeu hacemos aqui es esconder o el guion _ o la letra correcta del jugador     
     $completa = true;                                   // para verificar si esta econtrada o no 
-    foreach (mb_str_split($_SESSION['frase']) as $c) {          // por cada letra de la frase se llamara $c
-        if ($c === ' ') {                                       //si es vacio 
-            $oculta .= '&nbsp;&nbsp;';                          //añade dos espacios invisible ne html para separar las palabas visualmente
-        } elseif (!esLletra($c)) {                                   // coma, apóstrofe, guion, "·", "?"... se muestran siempre
-            $oculta .= $c . ' ';
-        } elseif (in_array(normalitzar($c), $_SESSION['encertades'])) {         // busca si la letra esta en acertades si esta  
-            $oculta .= $c . ' ';                                    //la muestra seguida de un espacio
-        } else {
-            $oculta .= '_ ';                                        // sino la ha encontrado devuelve un guio bajo paraa esconder la palabra 
-            $completa = false;                          // y claramete no la encuentra 
+
+    // Agrupamos la frase en palabras: cada palabra se envuelve en un <span>
+    // para que el salto de línea se haga entre palabras y nunca a mitad de una palabra
+    $paraules = preg_split('/\s+/u', trim($_SESSION['frase']));
+
+    foreach ($paraules as $paraula) {
+        $bloc = '';
+        foreach (mb_str_split($paraula) as $c) {          // por cada letra de la palabra
+            if (!esLletra($c)) {                                   // coma, apóstrofe, guion, "·", "?"... se muestran siempre
+                $bloc .= $c;
+            } elseif (in_array(normalitzar($c), $_SESSION['encertades'])) {         // busca si la letra esta en acertades si esta  
+                $bloc .= $c;                                    //la muestra 
+            } else {
+                $bloc .= '_';                                        // sino la ha encontrado devuelve un guio bajo paraa esconder la palabra 
+                $completa = false;                          // y claramete no la encuentra 
+            }
         }
+        $oculta .= '<span class="paraula">' . $bloc . '</span>';
     }
 
 

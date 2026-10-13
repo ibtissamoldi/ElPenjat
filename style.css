@@ -284,6 +284,12 @@ header {
     line-height: 2;
 }
 
+/* Cada paraula és un sol element: mai es parteix a mitat */
+.paraula {
+    letter-spacing: 7px;
+    white-space: nowrap;
+}
+
 
 .zona-teclat {
     padding-top: 30px;
@@ -382,4 +388,142 @@ header {
 #index > noscript { 
     z-index: 1000; 
 }
-/*RESPONSIVE */
+
+/* Estil gameover.php */
+
+.resum-partida p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 15px 0;
+    color: var(--text-secundari);
+    font-size: 16px;
+    border-bottom: 1px solid var(--vora);
+}
+
+.resum-partida p:last-child {
+    border-bottom: none;
+}
+
+.resum-partida strong {
+    color: var(--or);
+    font-size: 17px;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.text-centrat {
+    margin: 25px 0;
+    color: var(--text);
+    font-size: 17px;
+    text-align: center;
+    line-height: 1.6;
+}
+.error-final {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px 20px;
+    color: #FFDDE1;
+    background-color: rgba(168, 50, 70, 0.18);
+    border: 1px solid var(--error);
+    border-radius: 6px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.botons-final {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.boto-enllac {
+    min-width: 180px;
+    padding: 14px 22px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--porpra);
+    color: var(--text);
+
+    border: 1px solid var(--violeta);
+    border-radius: 5px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+.boto-enllac:hover {
+    background-color: var(--violeta);
+    border-color: var(--or);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--ombra-lluentor);
+}
+
+.boto-enllac:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.boto-enllac:focus-visible {
+    outline: 2px solid var(--or);
+    outline-offset: 4px;
+}
+
+button.boto-enllac {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Estil ranking.php */
+.taula-ranking {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+}
+
+.taula-ranking th,
+.taula-ranking td {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.taula-ranking th {
+    background-color: var(--porpra);
+    color: var(--text);
+    letter-spacing: 1.5px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.taula-ranking tbody tr:nth-child(odd) {
+    background-color: var(--superficie);
+}
+
+.taula-ranking tbody tr:nth-child(even) {
+    background-color: var(--superficie-clara);
+}
+
+.taula-ranking tbody tr.ressaltat {
+    background-color: var(--bordeus);
+    color: white;
+    font-weight: bold;
+}
