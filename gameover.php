@@ -1,16 +1,13 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION['resultat'])) {
-        http_response_code(403);
-        if (file_exists(__DIR__ . '/error403.php')) {
-            include __DIR__ . '/error403.php';
-        } else {
-            echo '403 Forbidden';
-        }
+    // Sin permiso (no vienes de terminar una partida) -> 403
+    if (empty($_SESSION['gameover_ok'])) {
+        include __DIR__ . '/error403.php';
         exit;
     }
 
+    unset($_SESSION['gameover_ok']);   // el permiso se gasta al entrar
     $FITXER = __DIR__ . '/records.txt';
 
     $guanya    = ($_SESSION['resultat'] === 'guanya');
