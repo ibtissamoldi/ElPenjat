@@ -1,4 +1,5 @@
 /* Paleta de colors*/
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
 :root {
     /* Fons */
     --fons: #0D0B0F;
@@ -60,14 +61,25 @@ body {
     color: var(--text-secundari);
 }
 
+
+
 /* Estil index.php */
-#index {
+
+/* Estil index.php */
+
+body#index {
     position: relative;
-    background: url("./assets/images/gloomy_manor.jpg") no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    padding: 8px;
+    background-image: url("./assets/images/gloomy_manor.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
-#index::before {
+
+body#index::before {
     content: "";
     position: fixed;
     inset: 0;
@@ -75,53 +87,297 @@ body {
     pointer-events: none;
     z-index: 0;
 }
-#index > * {
+
+/* Panell principal */
+body#index #panel-index {
     position: relative;
     z-index: 1;
+    width: calc(100% - 32px);
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 50px 40px 30px; /* más arriba para que respire el sombrero */
+    background: rgba(13, 11, 15, 0.78);
+    border: 1px solid var(--vora);
+    border-radius: 10px;
+    box-shadow: var(--ombra-mitjana);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
-#titol {
+
+/* Títol amb barret */
+body#index #div-titol {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+body#index #titol {
+    position: relative;           /* el barret se coloca respecto al título */
+    display: inline-block;
+    margin: 0;
+    font-family: 'UnifrakturCook', serif;
+    font-size: 2.7rem;
+    color: #E0D6CF;
     text-align: center;
+    text-shadow: 0 0 5px rgba(107, 63, 122, 0.35);
 }
-#descripcio {
-    width: 580px;
-    text-align: justify;
-    font-size: 1.2rem;
-}
-#icona {
+
+body#index #icona {
+    position: absolute;
     width: 80px;
-    height: 80px;
+    top: -41px;                   /* sube/baja el sombrero */
+    right: -46px;                 /* acércalo/aléjalo de la "t" */
+    transform: rotate(14deg);     /* inclinado = "puesto" */
+    pointer-events: none;
 }
-#index > div { margin: 16px auto; }
-#div-titol {
+
+/* Descripció */
+body#index #descripcio {
+    width: 100%;
+    max-width: 580px;
+    margin: 0;
+    text-align: justify;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #D0C7BE;
+}
+
+/* Formulari */
+body#index #form-jugar {
+    width: 100%;
+    margin: 0;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 290px;
+    flex-direction: column;
+    align-items: center;          /* centra campos y botón */
+    gap: 24px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3rem;
+    color: #D0C7BE;
 }
-#a-ranking {
-    color: var(--or)
-}
-#form-jugar {
-    width: 800px;
-    height: 64px;
-    font-size: 1.5rem;
+
+body#index #camps {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
 }
-#form-jugar input, #form-jugar select {
-    font-size: 1.5rem;
-    background-color: grey;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+body#index #camps > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
-#error-nom {
+
+body#index #form-jugar input,
+body#index #form-jugar select {
+    font-family: Cambria, Georgia, serif;
+    font-size: 1.1rem;
+    color: #C8BDB4;
+    background-color: #19151C;
+    border: 1px solid #51375C;
+    border-radius: 6px;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+body#index #form-jugar input[type="text"] {
+    width: 240px;
+    caret-color: #B99ABF;
+}
+
+body#index #form-jugar input:focus,
+body#index #form-jugar select:focus {
+    border-color: #80618A;
+    box-shadow: 0 0 5px rgba(107, 63, 122, 0.25);
+}
+
+body#index #error-nom {
     color: red;
     font-size: 1rem;
     margin-top: 0.25rem;
-    display: block;
 }
-input.invalid { border: 4px solid red; }
 
+body#index input.invalid {
+    border: 4px solid red;
+}
+
+/* Botó Jugar */
+body#index #form-jugar input[type="submit"] {
+    padding: 10px 32px;
+    background-color: #581D29;
+    color: #D8CBC5;
+    border: 1px solid #783544;
+    border-radius: 7px;
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+body#index #form-jugar input[type="submit"]:hover {
+    background-color: #702737;
+    border-color: #995064;
+}
+
+/* Ranking */
+body#index #zona-ranking {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+body#index #a-ranking {
+    display: inline-block;
+    padding: 10px 22px;
+    color: #C8B49C;
+    background-color: rgba(24, 20, 28, 0.9);
+    border: 1px solid #51405B;
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+body#index #a-ranking:hover {
+    background-color: #302337;
+    border-color: #80618A;
+}
+
+/* Adaptació a mòbils (al final y bien cerrado) */
+@media (max-width: 600px) {
+    body#index #panel-index {
+        width: calc(100% - 16px);
+        margin: 20px auto;
+        padding: 40px 16px 22px;
+    }
+
+    body#index #titol {
+        font-size: 2.2rem;
+    }
+
+    body#index #icona {
+        width: 55px;
+        top: -30px;
+        right: -30px;
+    }
+
+    body#index #descripcio {
+        font-size: 1rem;
+    }
+
+    body#index #camps {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    body#index #form-jugar input[type="text"],
+    body#index #form-jugar select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+/* Descripció */
+body#index #descripcio {
+    text-align: left;              /* adiós a los huecos del justify */
+}
+
+body#index #descripcio p {
+    margin: 0 0 12px;
+}
+
+body#index #descripcio .pregunta {
+    font-style: italic;
+    color: #C8B49C;
+    margin: 0;
+}
+
+/* Separador entre historia y formulario */
+body#index #form-jugar {
+    padding-top: 24px;
+    border-top: 1px solid rgba(81, 55, 92, 0.5);
+}
+
+/* Campos con la misma altura y ancho coherente */
+body#index #form-jugar input[type="text"] {
+    width: 260px;
+}
+
+body#index #form-jugar select {
+    width: 160px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body#index #camps {
+    align-items: flex-end;         /* alinea inputs por abajo */
+}
+
+/* Jugar como acción principal */
+body#index #form-jugar input[type="submit"] {
+    padding: 12px 56px;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+body#index #form-jugar input[type="submit"]:hover {
+    box-shadow: 0 0 14px rgba(132, 40, 58, 0.5);
+}
+
+/* Ranking como enlace secundario */
+body#index #a-ranking {
+    background: none;
+    border: none;
+    padding: 4px 0;
+    color: #A89580;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-size: 0.95rem;
+}
+
+body#index #a-ranking:hover {
+    background: none;
+    color: #E0D6CF;
+}
+
+body#index #zona-ranking {
+    margin-top: -8px;
+}
+
+/* Mismo nivel: alinear por arriba */
+body#index #camps {
+    align-items: flex-start;
+}
+
+/* Misma altura para input y select */
+body#index #form-jugar input[type="text"],
+body#index #form-jugar select {
+    height: 46px;
+    box-sizing: border-box;
+    padding: 0 12px;
+    font-size: 1.1rem;
+}
+
+body#index #form-jugar select {
+    width: 160px;
+}
+
+/* El mensaje de error no ocupa espacio hasta que hay error */
+body#index #error-nom {
+    min-height: 0;
+    margin: 0;
+}
+
+body#index #error-nom:not(:empty) {
+    margin-top: 0.25rem;
+}
 
 /* Estil play.php */
 
