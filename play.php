@@ -88,7 +88,7 @@
         static $cache = null;
         if ($cache !== null) return $cache;
 
-        $linies = file('sentences_ca.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $linies = file('data/sentences_ca.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         $scores = [];
         foreach ($linies as $f) {
             $s = puntuacioDificultat($f);
@@ -113,7 +113,7 @@
 
 
     ///test
-    $linies = file('sentences_ca.txt',FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $linies = file('data/sentences_ca.txt',FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
     $comptador = ['facil' => 0,'normal' => 0,'dificil' => 0];
 
@@ -145,7 +145,7 @@
 
         // leer las frases y quedarnos con el que el jugador a elegido
 
-        $linies = file('sentences_ca.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES); //quita el salto de línea del final de cada frase e ignora las líneas vacías.
+        $linies = file('data/sentences_ca.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES); //quita el salto de línea del final de cada frase e ignora las líneas vacías.
         $cantidates = [];  // guardaremos las frases elegidas por el nivel
         foreach ($linies as $frase){
             if (classificar($frase) === $dificultat){
@@ -170,6 +170,7 @@
         unset($_SESSION['resultat']);
         unset($_SESSION['registrat']);
         unset($_SESSION['ultim_record']); 
+        unset($_SESSION['gameover_ok']);   // para error 403 en gameover.php
         $_SESSION['inici'] = time();
 
         header('Location: play.php');  // evita reenviar el formulario al refrescar
@@ -237,18 +238,22 @@
 
 
 
-    // ---------- 5. FIN DE PARTIDA ----------
-    if ($completa || $errors >= $MAX_ERRORES) {                                  // si esta completa o los errores mayores que los maximos osea 6
-        $_SESSION['resultat'] = $completa ? 'guanya' : 'perd';                  // nos muestra el resultado si ha ganado o no
-        $_SESSION['temps']    = time() - $_SESSION['inici'];                    // el tiempo restamos la hora actual menos la hroa que empezo para calcular los segundos totales en los que jugo
-        $_SESSION['puntuacio'] = calcularPuntuacio($_SESSION['frase'], $errors, $_SESSION['temps'], $completa);
+        // ---------- 5. FIN DE PARTIDA ----------
+    if ($completa || $errors >= $MAX_ERRORES) {
 
-        // lo enviamos a la pagina de gameover.php ´
+        // Esto solo se calcula UNA vez (la primera que se detecta el final)
+        if (!isset($_SESSION['resultat'])) {
+            $_SESSION['resultat']  = $completa ? 'guanya' : 'perd';
+            $_SESSION['temps']     = time() - $_SESSION['inici'];
+            $_SESSION['puntuacio'] = calcularPuntuacio($_SESSION['frase'], $errors, $_SESSION['temps'], $completa);
+            $_SESSION['gameover_ok'] = true;   // permiso de un solo uso para entrar a gameover.php
+        }
 
+        // lo enviamos a la pagina de gameover.php
         if (!isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
             header('Location: gameover.php');
-            exit;                        
-        }   
+            exit;
+        }
     }
 ?>
 

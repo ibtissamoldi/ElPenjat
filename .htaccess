@@ -1,0 +1,3 @@
+Options -Indexes
+ErrorDocument 404 /ElPenjat/error404.php
+ErrorDocument 403 /ElPenjat/error403.php
