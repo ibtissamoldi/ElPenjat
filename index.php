@@ -25,7 +25,7 @@
         <div id="div-titol">
             <h1 id="titol">
                 El Penjat
-                <img id="icona" src="./assets/images/barret-bruixa.png" alt="">
+                <img id="icona" src="./assets/images/barret-bruixa.png" alt="icono bruixa">
             </h1>
         </div>
 

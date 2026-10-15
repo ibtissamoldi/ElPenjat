@@ -113,7 +113,7 @@
 
 
     ///test
-    $linies = file('data/sentences_ca.txt',FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    /*$linies = file('data/sentences_ca.txt',FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
     $comptador = ['facil' => 0,'normal' => 0,'dificil' => 0];
 
@@ -123,7 +123,7 @@
         if ($categoria !== null) {
             $comptador[$categoria]++;
         }
-    }
+    }*/
     //test
 
 
@@ -171,6 +171,7 @@
         unset($_SESSION['registrat']);
         unset($_SESSION['ultim_record']); 
         unset($_SESSION['gameover_ok']);   // para error 403 en gameover.php
+        unset($_SESSION['gameover_form']);
         $_SESSION['inici'] = time();
 
         header('Location: play.php');  // evita reenviar el formulario al refrescar
@@ -272,13 +273,15 @@
 
 <body class="pagina-joc" data-resultat="<?php echo isset($_SESSION['resultat']) ? htmlspecialchars($_SESSION['resultat']) : ''; ?>">
 
+<?php /*
     <!-- test: <?php echo $_SESSION['frase']; ?> -->
+
      <!-- TEST DE CLASSIFICACIÓ
         Facils: <?php echo $comptador['facil']; ?>
         Normals: <?php echo $comptador['normal']; ?>
         Dificils: <?php echo $comptador['dificil']; ?>
         -->
-
+*/?>
     <noscript>
         <div class="noscript-capa">
             <div class="noscript-missatge">

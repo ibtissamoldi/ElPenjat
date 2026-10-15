@@ -1,13 +1,23 @@
 <?php
     session_start();
 
-    // Sin permiso (no vienes de terminar una partida) -> 403
-    if (empty($_SESSION['gameover_ok'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $permis = !empty($_SESSION['gameover_form']);
+    } else {
+        $permis = !empty($_SESSION['gameover_ok']);
+        if ($permis) {
+            unset($_SESSION['gameover_ok']);
+            $_SESSION['gameover_form'] = true;
+        }
+    }
+
+    if (!$permis) {
+        http_response_code(403);
         include __DIR__ . '/error403.php';
         exit;
     }
 
-    unset($_SESSION['gameover_ok']);   // el permiso se gasta al entrar
+    
     $FITXER = __DIR__ . '/records.txt';
 
     $guanya    = ($_SESSION['resultat'] === 'guanya');
@@ -26,12 +36,12 @@
         $nom = mb_substr($nom, 0, 20);
         if ($nom === '') { $nom = 'Anònim'; }
 
-        // format de cada línia:  nom;puntuacio;data
         $linia = $nom . ';' . $puntuacio . ';' . date('Y-m-d H:i:s');
 
         if (file_put_contents($FITXER, $linia . "\n", FILE_APPEND | LOCK_EX) !== false) {
             $_SESSION['registrat']    = true;
             $_SESSION['ultim_record'] = $linia;     // per ressaltar-lo al rànquing
+             unset($_SESSION['gameover_form']);
             header('Location: ranking.php');
             exit;
         }
@@ -72,7 +82,7 @@
             </div>
 
             <div class="resum-partida">
-                <p>La frase era: <strong><?php echo $frase; ?></strong></p>
+                <p>La frase era: <strong><?php echo htmlspecialchars($frase); ?></strong></p>
                 <p>Temps: <strong><?php echo gmdate('H:i:s', $temps); ?></strong></p>
                 <p>Puntuació: <strong><?php echo $puntuacio; ?></strong></p>
             </div>
