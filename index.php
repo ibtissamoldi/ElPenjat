@@ -1,3 +1,15 @@
+<?php
+    function reproduirAudio($sfxFitxer) {
+        return '<audio autoplay><source src="./assets/audio/'.$sfxFitxer.'" type="audio/wav"></audio>'."\n";
+    }
+    function reproduirAudioEnBucle($sfxFitxer) {
+        return '<audio autoplay loop><source src="./assets/audio/'.$sfxFitxer.'" type="audio/wav"></audio>'."\n";
+    }
+    
+    $audioTag = reproduirAudio('tro-de-tempesta.wav');
+    $audioTag2 = reproduirAudioEnBucle('ambient-exterior.wav');
+?>
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -18,7 +30,8 @@
         </div>
     </noscript>
 
-
+    <?= $audioTag ?>
+    <?= $audioTag2 ?>
     
     <div id="panel-index">
 
@@ -58,7 +71,13 @@
             <a id="a-ranking" href="ranking.php">Veure rànking</a>
         </div>
 
+        <div id="div-audio">
+            <p>Per una millor experiència, permet la reproducció automàtica de multimèdia al teu navegador i recarrega aquesta pàgina.</p>
+            <p>Altrament, els sons es reproduiran quan facis clic a la pàgina.</p>
+        </div>
+
     </div>
 
+    <script src="./scripts/audio-fallback.js"></script>
 </body>
 </html>

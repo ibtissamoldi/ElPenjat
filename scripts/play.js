@@ -22,6 +22,13 @@ teclat.addEventListener("click", async function (e) {
             nou.getElementById("imatge-penjat").getAttribute("src");
         teclat.innerHTML = nou.getElementById("teclat").innerHTML;
 
+        const audio = nou.querySelector("audio");
+        if (audio) {
+            document.getElementById("letter-audio")?.remove();
+            audio.id = "letter-audio";
+            document.body.append(audio);
+        }
+
         const resultat = (nou.body.dataset.resultat || "").trim();
 
         if (resultat === "guanya" || resultat === "perd") {

@@ -39,6 +39,19 @@
     }
 
     $jaRegistrat = !empty($_SESSION['registrat']);
+
+    function reproduirAudio($sfxFitxer) {
+        return '<audio autoplay><source src="./assets/audio/'.$sfxFitxer.'" type="audio/wav"></audio>'."\n";
+    }
+
+    $audioTag = '';
+    $audioTag2 = '';
+    if ($guanya) {
+        $audioTag = reproduirAudio('aplaudiment.wav');
+    } else {
+        $audioTag = reproduirAudio('riure-de-bruixa'.random_int(1,9).'.wav');
+        $audioTag2 = reproduirAudio('bach.wav');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +63,10 @@
     <title>El Penjat - Final de la partida</title>
 </head>
 <body class="pagina-joc">
+
+    <?= $audioTag ?>
+    <?= $audioTag2 ?>
+
     <header>
         <a href="index.php" class="logo">EL PENJAT</a>
         <div class="info-jugador">
@@ -98,6 +115,6 @@
         </section>
     </main>
 
-   
+    <script src="scripts/audio-fallback.js"></script>
 </body>
 </html>

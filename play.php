@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-
+    $audioTag = '';
     $MAX_ERRORES = 6;
 
 
@@ -111,6 +111,15 @@
         return 'dificil';
     }
 
+    function reproduirAudio($sfxFitxer) {
+        return '<audio autoplay><source src="./assets/audio/'.$sfxFitxer.'" type="audio/wav"></audio>'."\n";
+    }
+    
+    // No funciona, es reprodueix l'àudio cada vegada que es fa clic a una lletra
+    /* function reproduirAudioEnBucle($sfxFitxer) {
+        return '<audio autoplay loop><source src="./assets/audio/'.$sfxFitxer.'" type="audio/wav"></audio>'."\n";
+    }
+    $audioTagAmbient = reproduirAudioEnBucle('ambient-interior.wav'); */
 
     ///test
     $linies = file('data/sentences_ca.txt',FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -201,8 +210,10 @@
         if ($valida && !$jaUsada){
             if (mb_strpos(normalitzar($_SESSION['frase']), $lletra) !== false){  //if la letra existe me devolvera el indice entonces si me devuelve un numero 
                 $_SESSION['encertades'][] = $lletra;        // es un indice 
+                $audioTagLletra = reproduirAudio('encert.wav');        
             }else{
                 $_SESSION['fallades'][] = $lletra;   // de lo contrario no existe y me da un false 
+                $audioTagLletra = reproduirAudio('error.wav');    
             }
         }
 
@@ -288,6 +299,7 @@
         </div>
     </noscript>
 
+    <?= $audioTagLletra ?>
 
     <header>
         <a href="index.php" class="logo">EL PENJAT</a>
@@ -346,6 +358,7 @@
 
     </main>
 
+    <script src="scripts/audio-fallback.js"></script>
     <script src="scripts/play.js"></script>
 
 </body>

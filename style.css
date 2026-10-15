@@ -46,6 +46,9 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding: 8px;
 }
+audio {
+    display: none;
+}
 .superficie {
     background-color: var(--superficie);
     padding: 8px;
@@ -377,6 +380,12 @@ body#index #error-nom {
 
 body#index #error-nom:not(:empty) {
     margin-top: 0.25rem;
+}
+
+body#index #div-audio {
+    font-size: 0.9rem;
+    color: lightgray;
+    font-style: italic;
 }
 
 /* Estil play.php */
