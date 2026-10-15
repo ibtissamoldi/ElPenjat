@@ -1,6 +1,14 @@
 <?php
     session_start();
 
+    if (
+        $_SERVER['REQUEST_METHOD'] === 'POST'
+        && ($_POST['registrar'] ?? '') === '1'
+        && isset($_SESSION['resultat'])
+    ) {
+        $_SESSION['gameover_ok'] = true;
+    }
+
     // Sin permiso (no vienes de terminar una partida) -> 403
     if (empty($_SESSION['gameover_ok'])) {
         include __DIR__ . '/error403.php';
